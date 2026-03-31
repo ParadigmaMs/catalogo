@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo 2026 — Paradigma Music Station</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── CUSTOM PROPERTIES ────────────────────────────── */
+    :root {
+      --navy:         #1C1B4D;
+      --navy-soft:    #2d2c75;
+      --navy-faint:   #eef0f8;
+      --magenta:      #B80E65;
+      --magenta-bg:   #fdf0f6;
+      --blue:         #1791B1;
+      --blue-bg:      #edf6fa;
+      --blue-light:   #7CAEF3;
+
+      --bg:           #f7f8fd;
+      --bg-alt:       #ffffff;
+      --surface:      #ffffff;
+      --surface-alt:  #f7f8fd;
+      --border:       #e2e5f4;
+      --border-mid:   #d0d4ef;
+
+      --text-primary: #1C1B4D;
+      --text-body:    #3d3c6e;
+      --text-muted:   #7a7fb8;
+      --text-dim:     #a8adce;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --radius-sm:  8px;
+      --radius-md:  14px;
+      --radius-lg:  20px;
+
+      --shadow-sm:   0 1px 4px rgba(28,27,77,0.06);
+      --shadow-card: 0 4px 20px rgba(28,27,77,0.08);
+      --shadow-lift: 0 10px 40px rgba(28,27,77,0.13);
+
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ─── RESET ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── ANIMATIONS ───────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.5; }
+    }
+
+    .fade-up   { animation: fadeUp 0.6s ease both; }
+    .fade-up-1 { animation-delay: 0.05s; }
+    .fade-up-2 { animation-delay: 0.12s; }
+    .fade-up-3 { animation-delay: 0.19s; }
+    .fade-up-4 { animation-delay: 0.26s; }
+    .fade-up-5 { animation-delay: 0.33s; }
+    .fade-up-6 { animation-delay: 0.40s; }
+    .fade-up-7 { animation-delay: 0.47s; }
+
+    /* ─── LAYOUT ────────────────────────────────────────── */
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── HERO ──────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+      padding: 64px 24px 56px;
+    }
+
+    /* Decorative staff lines */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 75% 50%, rgba(23,145,177,0.15) 0%, transparent 55%),
+        radial-gradient(circle at 10% 80%, rgba(184,14,101,0.10) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-staff {
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 320px;
+      height: 140px;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    .hero-staff span {
+      display: block;
+      height: 1px;
+      background: #fff;
+      margin-bottom: 24px;
+    }
+
+    .hero-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 7vw, 72px);
+      font-weight: 400;
+      line-height: 1.0;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--blue-light);
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      margin-bottom: 32px;
+    }
+
+    .hero-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-bar-accent {
+      height: 3px;
+      width: 48px;
+      background: var(--magenta);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .hero-bar-track {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, rgba(255,255,255,0.12), transparent);
+    }
+
+    /* ─── MAIN ──────────────────────────────────────────── */
+    .main {
+      padding: 52px 24px 80px;
+    }
+
+    .sections-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    /* ─── SECTION HEADER ────────────────────────────────── */
+    .section-header {
+      margin-bottom: 16px;
+    }
+
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 2px;
+      background: var(--magenta);
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--blue);
+    }
+
+    /* ─── CARD BASE ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 30px;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lift);
+    }
+
+    /* ─── PROGRAM DESCRIPTION ───────────────────────────── */
+    .program-desc {
+      font-size: 14px;
+      color: var(--text-body);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .program-desc strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .program-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .meta-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      background: var(--navy-faint);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    .meta-tag .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* ─── INSCRIPCIÓN ───────────────────────────────────── */
+    .inscripcion-card {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a1860 100%);
+      border-color: transparent;
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .inscripcion-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lift);
+    }
+
+    .inscripcion-left {
+      padding-right: 28px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .inscripcion-right {
+      padding-left: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .inscripcion-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    .inscripcion-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+      line-height: 1.5;
+      border-left: 2px solid rgba(184,14,101,0.6);
+      padding-left: 10px;
+    }
+
+    .price-pair {
+      display: flex;
+      gap: 32px;
+      margin-top: 12px;
+    }
+
+    .price-block { display: flex; flex-direction: column; gap: 3px; }
+
+    .price-label {
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      font-weight: 700;
+    }
+
+    .price-value {
+      font-family: var(--font-display);
+      font-size: 46px;
+      line-height: 1;
+      color: #fff;
+    }
+
+    .price-value.magenta { color: #e84d9e; }
+    .price-value.blue    { color: var(--blue-light); }
+
+    /* ─── PROGRAM CARDS ─────────────────────────────────── */
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .price-table thead tr {
+      background: var(--navy);
+    }
+
+    .price-table thead th {
+      padding: 11px 16px;
+      text-align: left;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      font-weight: 700;
+      font-family: var(--font-body);
+    }
+
+    .price-table thead th:not(:first-child):not(:nth-child(2)) {
+      text-align: right;
+    }
+
+    .price-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    .price-table tbody tr:last-child { border-bottom: none; }
+
+    .price-table tbody tr:hover { background: var(--surface-alt); }
+
+    .price-table tbody tr:nth-child(even) { background: #fafbfe; }
+    .price-table tbody tr:nth-child(even):hover { background: #f2f4fb; }
+
+    .price-table td { padding: 14px 16px; font-size: 13px; }
+
+    .price-table td.row-name   { font-weight: 600; color: var(--navy); }
+    .price-table td.row-detail { color: var(--text-muted); font-size: 12px; }
+
+    .price-table td.row-price {
+      text-align: right;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--magenta);
+      white-space: nowrap;
+    }
+
+    .price-table td.row-price.bs { color: var(--blue); }
+
+    /* Simple price display */
+    .price-display {
+      display: flex;
+      gap: 28px;
+      align-items: flex-end;
+      padding: 8px 0;
+    }
+
+    .price-display .price-block .price-label { color: var(--text-muted); }
+
+    .price-display .price-value {
+      font-family: var(--font-display);
+      font-size: 44px;
+      line-height: 1;
+    }
+
+    .price-display .price-value.on-light        { color: var(--magenta); }
+    .price-display .price-value.on-light.bs     { color: var(--blue); }
+
+    /* ─── PROGRAM GRID 2 COLS ───────────────────────────── */
+    .program-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    /* ─── HIGHLIGHT BADGE ───────────────────────────────── */
+    .badge-recommended {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px 4px 8px;
+      background: var(--magenta-bg);
+      border: 1px solid rgba(184,14,101,0.2);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--magenta);
+      margin-bottom: 18px;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--magenta);
+      animation: pulse 2s ease infinite;
+    }
+
+    /* ─── DIVIDER ────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* ─── CÁTEDRAS ──────────────────────────────────────── */
+    .chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 16px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border-mid);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-body);
+      cursor: default;
+      transition: all var(--transition);
+    }
+
+    .chip:hover {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(28,27,77,0.2);
+    }
+
+    .chip.featured {
+      background: var(--magenta-bg);
+      border-color: rgba(184,14,101,0.25);
+      color: var(--magenta);
+      font-weight: 600;
+    }
+
+    .chip.featured:hover {
+      background: var(--magenta);
+      border-color: var(--magenta);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(184,14,101,0.3);
+    }
+
+    /* ─── INFO CARDS ────────────────────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--blue);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .info-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.65;
+    }
+
+    .info-value .muted {
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────── */
+    .page-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      background: var(--surface);
+    }
+
+    .page-footer p {
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+    }
+
+    .page-footer span { color: var(--magenta); font-weight: 500; }
+
+    /* ─── RESPONSIVE: TABLET ────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { padding: 52px 20px 44px; }
+      .main { padding: 40px 20px 64px; }
+      .hero-staff { display: none; }
+
+      .inscripcion-card {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .inscripcion-left {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        padding-right: 0;
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+      }
+      .inscripcion-right { padding-left: 0; }
+
+      .program-grid-2 { grid-template-columns: 1fr; }
+
+      .price-value { font-size: 38px; }
+      .section-title { font-size: 22px; }
+    }
+
+    /* ─── RESPONSIVE: MOBILE ────────────────────────────── */
+    @media (max-width: 480px) {
+      .hero { padding: 40px 16px 36px; }
+      .main { padding: 32px 16px 56px; }
+      .container { padding: 0 16px; }
+
+      .card { padding: 22px 20px; }
+
+      .price-table thead th:nth-child(2),
+      .price-table td:nth-child(2) { display: none; }
+
+      .info-grid { grid-template-columns: 1fr; }
+
+      .price-table td.row-price { font-size: 18px; }
+      .price-value { font-size: 32px; }
+      .price-display .price-value { font-size: 36px; }
+
+      .price-pair { gap: 20px; }
+      .section-title { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HERO ════════════════════════════════════════════ -->
+  <header class="hero">
+    <div class="hero-staff" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow fade-up fade-up-1">Paradigma Music Station</p>
+      <h1 class="hero-title fade-up fade-up-2">Escuela de <em>Música</em></h1>
+      <p class="hero-subtitle fade-up fade-up-3">Catálogo de Programas y Tarifas &nbsp;/&nbsp; 2026</p>
+      <div class="hero-bar fade-up fade-up-4">
+        <div class="hero-bar-accent"></div>
+        <div class="hero-bar-track"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ MAIN ════════════════════════════════════════════ -->
+  <main class="main">
+    <div class="container">
+      <div class="sections-grid">
+
+        <!-- ── INSCRIPCIÓN ──────────────────────────────── -->
+        <section class="fade-up fade-up-1">
+          <div class="section-header">
+            <p class="section-eyebrow">Inicio</p>
+            <h2 class="section-title">Inscripción</h2>
+          </div>
+          <div class="card inscripcion-card">
+            <div class="inscripcion-left">
+              <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);font-weight:700;margin-bottom:16px;">Pago único al inicio</p>
+              <div class="price-pair">
+                <div class="price-block">
+                  <span class="price-label">Divisas</span>
+                  <span class="price-value magenta">$15</span>
+                </div>
+                <div class="price-block">
+                  <span class="price-label">Bolívares</span>
+                  <span class="price-value blue">$20</span>
+                </div>
+              </div>
+            </div>
+            <div class="inscripcion-right">
+              <p class="inscripcion-desc">Tu primer paso para comenzar en Paradigma. La inscripción cubre la matrícula y tu <strong style="color:rgba(255,255,255,0.8);">clase de exploración</strong>, donde conocerás la escuela, los profesores y definirás tu programa ideal.</p>
+              <p class="inscripcion-note">100% reembolsable si decides no continuar.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── PAQUETE INTEGRAL ─────────────────────────── -->
+        <section class="fade-up fade-up-2">
+          <div class="section-header">
+            <p class="section-eyebrow">Programa</p>
+            <h2 class="section-title">Paquete <em>Integral</em></h2>
+          </div>
+          <div class="card">
+            <div class="badge-recommended">
+              <span class="badge-dot"></span>
+              Opción recomendada
+            </div>
+            <p class="program-desc">
+              La formación musical más completa de Paradigma. Combina el aprendizaje técnico del instrumento con la comprensión teórica de la música y la experiencia de tocar en grupo — todo en una misma semana.
+            </p>
+            <div class="program-meta">
+              <span class="meta-tag"><span class="dot"></span>Instrumento — 40 min</span>
+              <span class="meta-tag"><span class="dot"></span>Lenguaje Musical — 40 min</span>
+              <span class="meta-tag"><span class="dot"></span>Agrupación — 40 min</span>
+              <span class="meta-tag"><span class="dot"></span>2 horas semanales en total</span>
+            </div>
+            <table class="price-table">
+              <thead>
+                <tr>
+                  <th>Modalidad</th>
+                  <th>Detalle</th>
+                  <th>Divisas</th>
+                  <th>Bs</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="row-name">Grupal</td>
+                  <td class="row-detail">Hasta 2 alumnos por clase de instrumento</td>
+                  <td class="row-price">$50</td>
+                  <td class="row-price bs">$65</td>
+                </tr>
+                <tr>
+                  <td class="row-name">Individual</td>
+                  <td class="row-detail">Atención exclusiva con el profesor</td>
+                  <td class="row-price">$70</td>
+                  <td class="row-price bs">$90</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── GRID 2 COLS ──────────────────────────────── -->
+        <div class="program-grid-2">
+
+          <!-- Iniciación Musical -->
+          <section class="fade-up fade-up-3">
+            <div class="section-header">
+              <p class="section-eyebrow">Programa infantil</p>
+              <h2 class="section-title">Iniciación <em>Musical</em></h2>
+            </div>
+            <div class="card" style="height:calc(100% - 70px);">
+              <p class="program-desc">
+                Diseñado para <strong>niños pequeños</strong> que dan sus primeros pasos en la música. A través de metodologías lúdicas y sensoriales, los niños desarrollan oído, ritmo y expresión musical.
+              </p>
+              <div class="program-meta">
+                <span class="meta-tag"><span class="dot"></span>120 min por semana</span>
+                <span class="meta-tag"><span class="dot"></span>Clase grupal</span>
+              </div>
+              <div class="divider"></div>
+              <div class="price-display">
+                <div class="price-block">
+                  <span class="price-label" style="color:var(--text-muted);font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">Divisas</span>
+                  <span class="price-value on-light" style="font-family:var(--font-display);font-size:44px;line-height:1;color:var(--magenta);">$40</span>
+                </div>
+                <div class="price-block">
+                  <span class="price-label" style="color:var(--text-muted);font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">Bs</span>
+                  <span class="price-value on-light bs" style="font-family:var(--font-display);font-size:44px;line-height:1;color:var(--blue);">$55</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Clase Personalizada -->
+          <section class="fade-up fade-up-4">
+            <div class="section-header">
+              <p class="section-eyebrow">Programa flexible</p>
+              <h2 class="section-title">Clase <em>Personalizada</em></h2>
+            </div>
+            <div class="card" style="height:calc(100% - 70px);">
+              <p class="program-desc">
+                La opción ideal para quienes prefieren avanzar a su propio ritmo. El profesor adapta el contenido de <strong>instrumento y lenguaje musical</strong> a tus objetivos y nivel, sin estructura predefinida.
+              </p>
+              <div class="program-meta">
+                <span class="meta-tag"><span class="dot"></span>60 min por semana</span>
+              </div>
+              <table class="price-table">
+                <thead>
+                  <tr>
+                    <th>Modalidad</th>
+                    <th>Divisas</th>
+                    <th>Bs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="row-name">Presencial</td>
+                    <td class="row-price">$50</td>
+                    <td class="row-price bs">$70</td>
+                  </tr>
+                  <tr>
+                    <td class="row-name">Online</td>
+                    <td class="row-price">$50</td>
+                    <td class="row-price bs">$70</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+        </div><!-- /program-grid-2 -->
+
+        <!-- ── CLASES ADICIONALES ───────────────────────── -->
+        <section class="fade-up fade-up-5">
+          <div class="section-header">
+            <p class="section-eyebrow">Complementos</p>
+            <h2 class="section-title">Clases <em>Adicionales</em></h2>
+          </div>
+          <div class="card">
+            <p class="program-desc">
+              ¿Ya tienes un programa y quieres ir más lejos? Las clases adicionales te permiten reforzar un área específica o agregar una nueva disciplina sin cambiar tu plan principal. Se pueden incorporar en cualquier momento del año.
+            </p>
+            <table class="price-table">
+              <thead>
+                <tr>
+                  <th>Clase adicional</th>
+                  <th>Detalle</th>
+                  <th>Divisas</th>
+                  <th>Bs</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="row-name">Instrumento — Grupal</td>
+                  <td class="row-detail">Hasta 2 alumnos</td>
+                  <td class="row-price">$20</td>
+                  <td class="row-price bs">$26</td>
+                </tr>
+                <tr>
+                  <td class="row-name">Instrumento — Individual</td>
+                  <td class="row-detail">Clase privada con el profesor</td>
+                  <td class="row-price">$40</td>
+                  <td class="row-price bs">$55</td>
+                </tr>
+                <tr>
+                  <td class="row-name">Agrupación — Grupal</td>
+                  <td class="row-detail">Práctica de ensamble y banda</td>
+                  <td class="row-price">$15</td>
+                  <td class="row-price bs">$20</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── CÁTEDRAS ─────────────────────────────────── -->
+        <section class="fade-up fade-up-6">
+          <div class="section-header">
+            <p class="section-eyebrow">Instrumentos y disciplinas</p>
+            <h2 class="section-title">Cátedras disponibles</h2>
+          </div>
+          <div class="card">
+            <p class="program-desc" style="margin-bottom:20px;">Paradigma ofrece formación en una amplia variedad de instrumentos y disciplinas. Todos los programas pueden cursarse con cualquiera de las cátedras disponibles.</p>
+            <div class="chips-grid">
+              <span class="chip featured">Iniciación Musical</span>
+              <span class="chip">Canto</span>
+              <span class="chip">Flauta dulce</span>
+              <span class="chip">Ukulele</span>
+              <span class="chip">Cuatro</span>
+              <span class="chip">Guitarra acústica</span>
+              <span class="chip">Guitarra eléctrica</span>
+              <span class="chip">Bajo eléctrico</span>
+              <span class="chip">Teclado</span>
+              <span class="chip">Percusión</span>
+              <span class="chip">Batería</span>
+              <span class="chip">Lenguaje musical</span>
+              <span class="chip">Agrupación</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── HORARIO Y UBICACIÓN ───────────────────────── -->
+        <section class="fade-up fade-up-7">
+          <div class="section-header">
+            <p class="section-eyebrow">Visítanos</p>
+            <h2 class="section-title">Horario y <em>Ubicación</em></h2>
+          </div>
+          <div class="info-grid">
+            <div class="info-card">
+              <p class="info-label">Horario de atención</p>
+              <p class="info-value">
+                Lunes a Sábado<br>
+                10:00 am – 6:00 pm<br>
+                <span class="muted">Clases con cita previa</span>
+              </p>
+            </div>
+            <div class="info-card">
+              <p class="info-label">Dirección</p>
+              <p class="info-value">
+                Av. Universidad con 8B<br>
+                Casa 61-38<br>
+                <span class="muted">Referencia: Pastelísimo</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /sections-grid -->
+    </div><!-- /container -->
+  </main>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════ -->
+  <footer class="page-footer">
+    <p>© 2026 &nbsp;<span>Paradigma Music Station</span>&nbsp; — Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
